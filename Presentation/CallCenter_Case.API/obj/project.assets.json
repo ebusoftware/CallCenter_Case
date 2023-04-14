@@ -88,6 +88,55 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "Application.CallCenter_Case/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Domain.CallCenter_Case": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Application.CallCenter_Case.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Application.CallCenter_Case.dll": {}
+        }
+      },
+      "Domain.CallCenter_Case/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Domain.CallCenter_Case.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Domain.CallCenter_Case.dll": {}
+        }
+      },
+      "Infrastructure.CallCenter_Case/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Application.CallCenter_Case": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Infrastructure.CallCenter_Case.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Infrastructure.CallCenter_Case.dll": {}
+        }
+      },
+      "Persistence.CallCenter_Case/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Application.CallCenter_Case": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Persistence.CallCenter_Case.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Persistence.CallCenter_Case.dll": {}
+        }
       }
     }
   },
@@ -216,10 +265,33 @@
         "swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
         "swashbuckle.aspnetcore.swaggerui.nuspec"
       ]
+    },
+    "Application.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "path": "../../Core/Application.CallCenter_Case/Application.CallCenter_Case.csproj",
+      "msbuildProject": "../../Core/Application.CallCenter_Case/Application.CallCenter_Case.csproj"
+    },
+    "Domain.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "path": "../../Core/Domain.CallCenter_Case/Domain.CallCenter_Case.csproj",
+      "msbuildProject": "../../Core/Domain.CallCenter_Case/Domain.CallCenter_Case.csproj"
+    },
+    "Infrastructure.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "path": "../../Infrastructure/Infrastructure.CallCenter_Case/Infrastructure.CallCenter_Case.csproj",
+      "msbuildProject": "../../Infrastructure/Infrastructure.CallCenter_Case/Infrastructure.CallCenter_Case.csproj"
+    },
+    "Persistence.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "path": "../../Infrastructure/Persistence.CallCenter_Case/Persistence.CallCenter_Case.csproj",
+      "msbuildProject": "../../Infrastructure/Persistence.CallCenter_Case/Persistence.CallCenter_Case.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
+      "Application.CallCenter_Case >= 1.0.0",
+      "Infrastructure.CallCenter_Case >= 1.0.0",
+      "Persistence.CallCenter_Case >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
@@ -258,7 +330,17 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Core\\Application.CallCenter_Case\\Application.CallCenter_Case.csproj": {
+              "projectPath": "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Core\\Application.CallCenter_Case\\Application.CallCenter_Case.csproj"
+            },
+            "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\Infrastructure.CallCenter_Case\\Infrastructure.CallCenter_Case.csproj": {
+              "projectPath": "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\Infrastructure.CallCenter_Case\\Infrastructure.CallCenter_Case.csproj"
+            },
+            "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\Persistence.CallCenter_Case\\Persistence.CallCenter_Case.csproj": {
+              "projectPath": "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\Persistence.CallCenter_Case\\Persistence.CallCenter_Case.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -10,4 +10,14 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application.CallCenter_Case\Application.CallCenter_Case.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Infrastructure.CallCenter_Case\Infrastructure.CallCenter_Case.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\Persistence.CallCenter_Case\Persistence.CallCenter_Case.csproj" />
+  </ItemGroup>
+
 </Project>

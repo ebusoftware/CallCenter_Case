@@ -1,0 +1,17 @@
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Persistence.CallCenter_Case.deps.json
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Persistence.CallCenter_Case.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Persistence.CallCenter_Case.pdb
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Application.CallCenter_Case.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Domain.CallCenter_Case.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Application.CallCenter_Case.pdb
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\bin\Debug\net6.0\Domain.CallCenter_Case.pdb
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.csproj.AssemblyReference.cache
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.AssemblyInfoInputs.cache
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.AssemblyInfo.cs
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.csproj.CoreCompileInputs.cache
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.csproj.CopyComplete
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\refint\Persistence.CallCenter_Case.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\Persistence.CallCenter_Case.pdb
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Infrastructure\Persistence.CallCenter_Case\obj\Debug\net6.0\ref\Persistence.CallCenter_Case.dll

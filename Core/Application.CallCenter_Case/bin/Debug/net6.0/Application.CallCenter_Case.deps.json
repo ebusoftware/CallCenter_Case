@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Application.CallCenter_Case/1.0.0": {
+        "dependencies": {
+          "Domain.CallCenter_Case": "1.0.0"
+        },
+        "runtime": {
+          "Application.CallCenter_Case.dll": {}
+        }
+      },
+      "Domain.CallCenter_Case/1.0.0": {
+        "runtime": {
+          "Domain.CallCenter_Case.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Application.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Domain.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

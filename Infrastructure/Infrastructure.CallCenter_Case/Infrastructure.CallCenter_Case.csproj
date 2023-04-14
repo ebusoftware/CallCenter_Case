@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Application.CallCenter_Case\Application.CallCenter_Case.csproj" />
+  </ItemGroup>
+
 </Project>
