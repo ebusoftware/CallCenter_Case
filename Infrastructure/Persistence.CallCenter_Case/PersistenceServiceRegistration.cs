@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.CallCenter_Case.Repositories;
+using Domain.CallCenter_Case.Entities.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.CallCenter_Case.Contexts;
+using Persistence.CallCenter_Case.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +18,26 @@ namespace Persistence.CallCenter_Case
         {
             //Add Db Context
             services.AddDbContext<CallCenterDbContext>(options => options.UseSqlServer(Configuration.ConnectionString));
+            //Identity Options
+            services.AddIdentity<AppUser, AppRole>(options =>
+            {
+                options.Password.RequiredLength = 3;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<CallCenterDbContext>();
+
+
+            services.AddScoped<ICallRecordWriteRepository, CallRecordWriteRepository>();
+            services.AddScoped<ICallRecordReadRepository, CallRecordReadRepository>();
+
+            services.AddScoped<IRequestReadRepository, RequestReadRepository>();
+            services.AddScoped<IRequestWriteRepository, RequestWriteRepository>();
+
+            services.AddScoped<IReportWriteRepository, ReportWriteRepository>();
+            services.AddScoped<IReportReadRepository, ReportReadRepository>();
+
         }
     }
 }

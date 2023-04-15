@@ -22,6 +22,39 @@ namespace Persistence.CallCenter_Case.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.CallRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequestType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ResponseTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("CallRecords");
+                });
+
             modelBuilder.Entity("Domain.CallCenter_Case.Entities.Identity.AppRole", b =>
                 {
                     b.Property<string>("Id")
@@ -122,6 +155,71 @@ namespace Persistence.CallCenter_Case.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CallRecordId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("RequestId")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("SolutionRate")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CallRecordId")
+                        .IsUnique()
+                        .HasFilter("[CallRecordId] IS NOT NULL");
+
+                    b.HasIndex("RequestId")
+                        .IsUnique()
+                        .HasFilter("[RequestId] IS NOT NULL");
+
+                    b.ToTable("Reports");
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Request", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RequestType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ResponseTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Requests");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -230,6 +328,43 @@ namespace Persistence.CallCenter_Case.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.CallRecord", b =>
+                {
+                    b.HasOne("Domain.CallCenter_Case.Entities.Identity.AppUser", "AppUser")
+                        .WithMany("CallRecords")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Report", b =>
+                {
+                    b.HasOne("Domain.CallCenter_Case.Entities.CallRecord", "CallRecord")
+                        .WithOne("Report")
+                        .HasForeignKey("Domain.CallCenter_Case.Entities.Report", "CallRecordId");
+
+                    b.HasOne("Domain.CallCenter_Case.Entities.Request", "Request")
+                        .WithOne("Report")
+                        .HasForeignKey("Domain.CallCenter_Case.Entities.Report", "RequestId");
+
+                    b.Navigation("CallRecord");
+
+                    b.Navigation("Request");
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Request", b =>
+                {
+                    b.HasOne("Domain.CallCenter_Case.Entities.Identity.AppUser", "AppUser")
+                        .WithMany("Requests")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Domain.CallCenter_Case.Entities.Identity.AppRole", null)
@@ -279,6 +414,23 @@ namespace Persistence.CallCenter_Case.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.CallRecord", b =>
+                {
+                    b.Navigation("Report");
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Identity.AppUser", b =>
+                {
+                    b.Navigation("CallRecords");
+
+                    b.Navigation("Requests");
+                });
+
+            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Request", b =>
+                {
+                    b.Navigation("Report");
                 });
 #pragma warning restore 612, 618
         }

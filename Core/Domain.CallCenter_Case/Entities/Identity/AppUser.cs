@@ -12,6 +12,10 @@ namespace Domain.CallCenter_Case.Entities.Identity
         public string NameSurname { get; set; }
         public string? RefreshToken { get; set; }
         public DateTime? RefreshTokenEndDate { get; set; }
+
+        public ICollection<CallRecord> CallRecords { get; set; }
+        public ICollection<Request> Requests { get; set; }
+
     }
 
 }

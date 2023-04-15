@@ -10,4 +10,9 @@
     <ProjectReference Include="..\Domain.CallCenter_Case\Domain.CallCenter_Case.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Abstractions\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

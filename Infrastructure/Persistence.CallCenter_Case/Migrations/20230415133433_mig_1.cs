@@ -157,6 +157,78 @@ namespace Persistence.CallCenter_Case.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "CallRecords",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RequestType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ResponseTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CallRecords", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_CallRecords_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Requests",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RequestType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ResponseTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    status = table.Column<bool>(type: "bit", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Requests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Requests_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reports",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CallRecordId = table.Column<int>(type: "int", nullable: true),
+                    RequestId = table.Column<int>(type: "int", nullable: true),
+                    SolutionRate = table.Column<float>(type: "real", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reports_CallRecords_CallRecordId",
+                        column: x => x.CallRecordId,
+                        principalTable: "CallRecords",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Reports_Requests_RequestId",
+                        column: x => x.RequestId,
+                        principalTable: "Requests",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -195,6 +267,30 @@ namespace Persistence.CallCenter_Case.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CallRecords_UserId",
+                table: "CallRecords",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reports_CallRecordId",
+                table: "Reports",
+                column: "CallRecordId",
+                unique: true,
+                filter: "[CallRecordId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reports_RequestId",
+                table: "Reports",
+                column: "RequestId",
+                unique: true,
+                filter: "[RequestId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Requests_UserId",
+                table: "Requests",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -215,7 +311,16 @@ namespace Persistence.CallCenter_Case.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Reports");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "CallRecords");
+
+            migrationBuilder.DropTable(
+                name: "Requests");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
