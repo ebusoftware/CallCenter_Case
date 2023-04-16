@@ -1,9 +1,12 @@
-﻿using Application.CallCenter_Case.Repositories;
+﻿using Application.CallCenter_Case.Abstractions.Services;
+using Application.CallCenter_Case.Abstractions.Services.Authentications;
+using Application.CallCenter_Case.Repositories;
 using Domain.CallCenter_Case.Entities.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.CallCenter_Case.Contexts;
 using Persistence.CallCenter_Case.Repositories;
+using Persistence.CallCenter_Case.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +40,13 @@ namespace Persistence.CallCenter_Case
 
             services.AddScoped<IReportWriteRepository, ReportWriteRepository>();
             services.AddScoped<IReportReadRepository, ReportReadRepository>();
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
+
+            services.AddScoped<IExternalAuthentication, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
+
 
         }
     }
