@@ -2,11 +2,13 @@
 using Application.CallCenter_Case.Dtos.User;
 using Application.CallCenter_Case.Exceptions;
 using Application.CallCenter_Case.Features.Commands.User.CreateUser;
+using Domain.CallCenter_Case.Entities;
 using Domain.CallCenter_Case.Entities.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
@@ -99,6 +101,11 @@ namespace Persistence.CallCenter_Case.Services
             return new string[] { };
         }
 
-        
+        public async Task<AppUser> GetByUserIdAsync(string userId)
+        {
+            AppUser user = await _userManager.FindByIdAsync(userId);
+            return user;
+            
+        }
     }
 }

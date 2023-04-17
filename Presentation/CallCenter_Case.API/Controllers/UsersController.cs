@@ -3,6 +3,7 @@ using Application.CallCenter_Case.Features.Commands.User.AssignRoleToUser;
 using Application.CallCenter_Case.Features.Commands.User.CreateUser;
 using Application.CallCenter_Case.Features.Commands.User.DeleteUser;
 using Application.CallCenter_Case.Features.Queries.User.GetAllUser;
+using Application.CallCenter_Case.Features.Queries.User.GetByUserId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -44,5 +45,12 @@ namespace CallCenter_Case.API.Controllers
             GetAllUserDTO response = await Mediator.Send(getAllUserQuery);
             return Ok(response);
         }
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetByUserId([FromRoute] GetByUserIdQuery getByUserIdQuery)
+        {
+            GetByUserIdDTO response = await Mediator.Send(getByUserIdQuery);
+            return Ok(response);
+        }
+
     }
 }

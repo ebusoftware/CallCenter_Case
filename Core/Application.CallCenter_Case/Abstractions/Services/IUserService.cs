@@ -17,5 +17,6 @@ namespace Application.CallCenter_Case.Abstractions.Services
         int TotalUsersCount { get; }
         Task AssignRoleToUserAsnyc(string userId, string[] roles);
         Task<string[]> GetRolesToUserAsync(string userIdOrName);
+        Task<AppUser> GetByUserIdAsync(string userId);
     }
 }
