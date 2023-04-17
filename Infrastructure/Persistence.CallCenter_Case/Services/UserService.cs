@@ -20,10 +20,12 @@ namespace Persistence.CallCenter_Case.Services
     public class UserService : IUserService
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly RoleManager<AppRole> _roleManager;
 
-        public UserService(UserManager<AppUser> userManager)
+        public UserService(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task<CreateUserDTO> CreateAsync(CreateUserCommand model)
@@ -81,10 +83,19 @@ namespace Persistence.CallCenter_Case.Services
             AppUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
-                await _userManager.RemoveFromRolesAsync(user, userRoles);
-
-                await _userManager.AddToRolesAsync(user, roles);
+                for (int i = 0; i < roles.Length; i++)
+                {
+                    AppRole role = await _roleManager.FindByIdAsync(roles[i]);
+                    if (role != null)
+                    {
+                        var userRoles = await _userManager.GetRolesAsync(user);
+                        await _userManager.RemoveFromRolesAsync(user, userRoles);
+                        await _userManager.AddToRoleAsync(user, role.Name);
+                    }
+                    else
+                        break;
+                }
+                
             }
         }
         public async Task<string[]> GetRolesToUserAsync(string userIdOrName)

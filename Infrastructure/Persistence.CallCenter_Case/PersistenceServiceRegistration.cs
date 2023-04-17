@@ -46,6 +46,7 @@ namespace Persistence.CallCenter_Case
 
             services.AddScoped<IExternalAuthentication, AuthService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
+            services.AddScoped<IRoleService, RoleService>();
 
 
         }

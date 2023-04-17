@@ -12,10 +12,12 @@ namespace Persistence.CallCenter_Case.Services
     public class RoleService : IRoleService
     {
         readonly RoleManager<AppRole> _roleManager;
+        readonly UserManager<AppUser> _userManager;
 
-        public RoleService(RoleManager<AppRole> roleManager)
+        public RoleService(RoleManager<AppRole> roleManager, UserManager<AppUser> userManager)
         {
             _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         public async Task<bool> CreateRole(string name)
@@ -47,9 +49,13 @@ namespace Persistence.CallCenter_Case.Services
         }
 
         public async Task<(string id, string name)> GetRoleById(string id)
+
         {
-            string role = await _roleManager.GetRoleIdAsync(new() { Id = id });
-            return (id, role);
+            var role = await _roleManager.FindByIdAsync(id);
+            if (role!=null)
+            return (role.Id, role.Name);
+
+            return new();
         }
 
         public async Task<bool> UpdateRole(string id, string name)
