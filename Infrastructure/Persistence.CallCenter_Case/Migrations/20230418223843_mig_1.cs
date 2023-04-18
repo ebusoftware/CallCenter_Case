@@ -206,17 +206,17 @@ namespace Persistence.CallCenter_Case.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "ad55349b-e712-4838-801f-f9c7176dc9e0", "920c4845-494f-4404-9f82-aa5ac60d1393", "Admin", "ADMIN" });
+                values: new object[] { "7a718a85-a658-4265-9315-9a8be672eedd", "fb789c3e-4367-469e-ac57-eeada93047e3", "Admin", "ADMIN" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NameSurname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenEndDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "64d5c4ea-42d8-4972-a10e-ed879b3dadd7", 0, "43cf2865-52f3-4b57-a734-2251f1668791", "admin@example.com", true, false, null, "admin", "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEAXQfh7GDnhFSGOsbP9XzwCL4ttflP6uf8KMnzOV5iuKT+PkpAlGngczqtcLOyNfBA==", null, false, null, null, "92b28e86-b343-488e-8e41-2bbd2064e26f", false, null });
+                values: new object[] { "1dc673a8-f7b3-4d15-bda2-6b1d82e8305c", 0, "22ec39c9-0591-442b-8ec0-879f31aec784", "admin@example.com", true, false, null, "admin", "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEIAD7XYwtifQK/HCLlGnJMhfHFND+FPy9kinLlclUj44cqFJqB69/enUsNOv0AnxAA==", null, false, null, null, "b53afaf7-f8b2-46b1-8212-99d3ecec77e9", false, null });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { "ad55349b-e712-4838-801f-f9c7176dc9e0", "64d5c4ea-42d8-4972-a10e-ed879b3dadd7" });
+                values: new object[] { "7a718a85-a658-4265-9315-9a8be672eedd", "1dc673a8-f7b3-4d15-bda2-6b1d82e8305c" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

@@ -83,13 +83,13 @@ namespace Persistence.CallCenter_Case.Services
             AppUser user = await _userManager.FindByIdAsync(userId);
             if (user != null)
             {
+                var userRoles = await _userManager.GetRolesAsync(user);
+                await _userManager.RemoveFromRolesAsync(user, userRoles);
                 for (int i = 0; i < roles.Length; i++)
                 {
                     AppRole role = await _roleManager.FindByIdAsync(roles[i]);
                     if (role != null)
                     {
-                        var userRoles = await _userManager.GetRolesAsync(user);
-                        await _userManager.RemoveFromRolesAsync(user, userRoles);
                         await _userManager.AddToRoleAsync(user, role.Name);
                     }
                     else

@@ -12,7 +12,7 @@ using Persistence.CallCenter_Case.Contexts;
 namespace Persistence.CallCenter_Case.Migrations
 {
     [DbContext(typeof(CallCenterDbContext))]
-    [Migration("20230418223515_mig_1")]
+    [Migration("20230418223843_mig_1")]
     partial class mig_1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -86,8 +86,8 @@ namespace Persistence.CallCenter_Case.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ad55349b-e712-4838-801f-f9c7176dc9e0",
-                            ConcurrencyStamp = "920c4845-494f-4404-9f82-aa5ac60d1393",
+                            Id = "7a718a85-a658-4265-9315-9a8be672eedd",
+                            ConcurrencyStamp = "fb789c3e-4367-469e-ac57-eeada93047e3",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -170,18 +170,18 @@ namespace Persistence.CallCenter_Case.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "64d5c4ea-42d8-4972-a10e-ed879b3dadd7",
+                            Id = "1dc673a8-f7b3-4d15-bda2-6b1d82e8305c",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "43cf2865-52f3-4b57-a734-2251f1668791",
+                            ConcurrencyStamp = "22ec39c9-0591-442b-8ec0-879f31aec784",
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NameSurname = "admin",
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEAXQfh7GDnhFSGOsbP9XzwCL4ttflP6uf8KMnzOV5iuKT+PkpAlGngczqtcLOyNfBA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIAD7XYwtifQK/HCLlGnJMhfHFND+FPy9kinLlclUj44cqFJqB69/enUsNOv0AnxAA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "92b28e86-b343-488e-8e41-2bbd2064e26f",
+                            SecurityStamp = "b53afaf7-f8b2-46b1-8212-99d3ecec77e9",
                             TwoFactorEnabled = false
                         });
                 });
@@ -307,8 +307,8 @@ namespace Persistence.CallCenter_Case.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "64d5c4ea-42d8-4972-a10e-ed879b3dadd7",
-                            RoleId = "ad55349b-e712-4838-801f-f9c7176dc9e0"
+                            UserId = "1dc673a8-f7b3-4d15-bda2-6b1d82e8305c",
+                            RoleId = "7a718a85-a658-4265-9315-9a8be672eedd"
                         });
                 });
 
