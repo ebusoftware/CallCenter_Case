@@ -189,7 +189,7 @@ namespace Persistence.CallCenter_Case.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RequestType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ResponseTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    status = table.Column<bool>(type: "bit", nullable: false),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -203,31 +203,20 @@ namespace Persistence.CallCenter_Case.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Reports",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CallRecordId = table.Column<int>(type: "int", nullable: true),
-                    RequestId = table.Column<int>(type: "int", nullable: true),
-                    SolutionRate = table.Column<float>(type: "real", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Reports", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Reports_CallRecords_CallRecordId",
-                        column: x => x.CallRecordId,
-                        principalTable: "CallRecords",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Reports_Requests_RequestId",
-                        column: x => x.RequestId,
-                        principalTable: "Requests",
-                        principalColumn: "Id");
-                });
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "ad55349b-e712-4838-801f-f9c7176dc9e0", "920c4845-494f-4404-9f82-aa5ac60d1393", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NameSurname", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenEndDate", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "64d5c4ea-42d8-4972-a10e-ed879b3dadd7", 0, "43cf2865-52f3-4b57-a734-2251f1668791", "admin@example.com", true, false, null, "admin", "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAEAACcQAAAAEAXQfh7GDnhFSGOsbP9XzwCL4ttflP6uf8KMnzOV5iuKT+PkpAlGngczqtcLOyNfBA==", null, false, null, null, "92b28e86-b343-488e-8e41-2bbd2064e26f", false, null });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "ad55349b-e712-4838-801f-f9c7176dc9e0", "64d5c4ea-42d8-4972-a10e-ed879b3dadd7" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -274,20 +263,6 @@ namespace Persistence.CallCenter_Case.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reports_CallRecordId",
-                table: "Reports",
-                column: "CallRecordId",
-                unique: true,
-                filter: "[CallRecordId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Reports_RequestId",
-                table: "Reports",
-                column: "RequestId",
-                unique: true,
-                filter: "[RequestId] IS NOT NULL");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Requests_UserId",
                 table: "Requests",
                 column: "UserId");
@@ -311,16 +286,13 @@ namespace Persistence.CallCenter_Case.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Reports");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
                 name: "CallRecords");
 
             migrationBuilder.DropTable(
                 name: "Requests");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

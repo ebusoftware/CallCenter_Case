@@ -38,9 +38,6 @@ namespace Persistence.CallCenter_Case
             services.AddScoped<IRequestReadRepository, RequestReadRepository>();
             services.AddScoped<IRequestWriteRepository, RequestWriteRepository>();
 
-            services.AddScoped<IReportWriteRepository, ReportWriteRepository>();
-            services.AddScoped<IReportReadRepository, ReportReadRepository>();
-
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAuthService, AuthService>();
 

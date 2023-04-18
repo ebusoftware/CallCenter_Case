@@ -16,6 +16,5 @@ namespace Domain.CallCenter_Case.Entities
         public bool Status { get; set; } = true;//ilk talep oluşunca aktif gözüksün
 
         public AppUser AppUser { get; set; }
-        public Report? Report { get; set; }
     }
 }

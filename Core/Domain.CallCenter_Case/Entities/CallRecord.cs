@@ -16,6 +16,5 @@ namespace Domain.CallCenter_Case.Entities
         public string Notes { get; set; }
 
         public AppUser AppUser { get; set; }
-        public Report? Report { get; set; }
     }
 }

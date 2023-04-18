@@ -32,7 +32,6 @@ namespace Application.CallCenter_Case.Features.Commands
                     var data = await _readRepository.GetByIdAsync(request.Id);
                     if (data!=null)
                     {
-                        data.Status = false;
                         data.ResponseTime = DateTime.UtcNow;
                         await _writeRepository.UpdateAsync(data);
                         return new CreateRequestResponseTimeDTO() { Message = $"Talebe Dönüş Yapıldı."};

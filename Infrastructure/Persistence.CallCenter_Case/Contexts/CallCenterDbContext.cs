@@ -1,6 +1,7 @@
 ﻿using Domain.CallCenter_Case.Entities;
 using Domain.CallCenter_Case.Entities.Common;
 using Domain.CallCenter_Case.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,7 +19,6 @@ namespace Persistence.CallCenter_Case.Contexts
 
         }
         public DbSet<CallRecord> CallRecords { get; set; }
-        public DbSet<Report> Reports { get; set; }
         public DbSet<Request> Requests { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
@@ -51,18 +51,38 @@ namespace Persistence.CallCenter_Case.Contexts
                     .HasForeignKey(p => p.UserId);
 
             });
-
-            modelBuilder.Entity<Report>(entity =>
+            Guid adminId = Guid.NewGuid();
+            Guid adminRoleId = Guid.NewGuid();
+            // Create Admin user
+            var admin = new AppUser
             {
+                Id = adminId.ToString(),
+                NameSurname = "admin",
+                NormalizedUserName = "ADMIN",
+                Email = "admin@example.com",
+                NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                EmailConfirmed = true,
+                LockoutEnabled = false,
+                SecurityStamp = Guid.NewGuid().ToString()
+            };
+            admin.PasswordHash = new PasswordHasher<AppUser>().HashPassword(admin, "123");
 
-                entity.HasOne(s => s.CallRecord)
-                    .WithOne(l => l.Report);
+            modelBuilder.Entity<AppUser>().HasData(admin);
 
+            // Create Admin role
+            modelBuilder.Entity<AppRole>().HasData(new AppRole
+            {
+                Id = adminRoleId.ToString(),
+                Name = "Admin",
+                NormalizedName = "ADMIN"
             });
-            
-            //ilk migration da admin kullanıcısı tanımladık.
-            //AppUser appUsers = new() { Id = Guid.NewGuid().ToString(), Email = "admin@hotmail.com", UserName = "admin", NameSurname = "Yönetici Admin" };
-            //modelBuilder.Entity<AppUser>().HasData(appUsers);
+
+            // Assign Admin role to Admin user
+            modelBuilder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            {
+                RoleId = adminRoleId.ToString(),
+                UserId = adminId.ToString()
+            });
 
             base.OnModelCreating(modelBuilder);
 

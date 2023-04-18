@@ -23,13 +23,19 @@ namespace CallCenter_Case.API.Controllers
             DeleteRequestDTO requestDTO = await Mediator.Send(deleteRequestCommand);
             return Ok(requestDTO);
         }
-        [HttpPut("{Id}")]
+        [HttpPut("[action]/{Id}")]
         public async Task<IActionResult> CreateResponseTime([FromRoute] CreateRequestResponseTimeCommand createResponseTimeCommand)
         {
             CreateRequestResponseTimeDTO requestDTO = await Mediator.Send(createResponseTimeCommand);
             return Ok(requestDTO);
         }
 
+        [HttpPut("[action]/{Id}")]
+        public async Task<IActionResult> UpdateRequestStatus([FromRoute] UpdateRequestStatusCommand updateRequestStatusCommand)
+        {
+            UpdateRequestStatusDTO requestDTO = await Mediator.Send(updateRequestStatusCommand);
+            return Ok(requestDTO);
+        }
         //Queries
         [HttpGet]
         public async Task<IActionResult> GetAllRequest([FromRoute] GetAllRequestQuery getAllRequestQuery)

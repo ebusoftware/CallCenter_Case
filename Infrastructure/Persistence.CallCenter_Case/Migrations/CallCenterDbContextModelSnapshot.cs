@@ -80,6 +80,15 @@ namespace Persistence.CallCenter_Case.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "ad55349b-e712-4838-801f-f9c7176dc9e0",
+                            ConcurrencyStamp = "920c4845-494f-4404-9f82-aa5ac60d1393",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Domain.CallCenter_Case.Entities.Identity.AppUser", b =>
@@ -155,39 +164,24 @@ namespace Persistence.CallCenter_Case.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-                });
 
-            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Report", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int?>("CallRecordId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("RequestId")
-                        .HasColumnType("int");
-
-                    b.Property<float?>("SolutionRate")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CallRecordId")
-                        .IsUnique()
-                        .HasFilter("[CallRecordId] IS NOT NULL");
-
-                    b.HasIndex("RequestId")
-                        .IsUnique()
-                        .HasFilter("[RequestId] IS NOT NULL");
-
-                    b.ToTable("Reports");
+                    b.HasData(
+                        new
+                        {
+                            Id = "64d5c4ea-42d8-4972-a10e-ed879b3dadd7",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "43cf2865-52f3-4b57-a734-2251f1668791",
+                            Email = "admin@example.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NameSurname = "admin",
+                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAXQfh7GDnhFSGOsbP9XzwCL4ttflP6uf8KMnzOV5iuKT+PkpAlGngczqtcLOyNfBA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "92b28e86-b343-488e-8e41-2bbd2064e26f",
+                            TwoFactorEnabled = false
+                        });
                 });
 
             modelBuilder.Entity("Domain.CallCenter_Case.Entities.Request", b =>
@@ -208,12 +202,12 @@ namespace Persistence.CallCenter_Case.Migrations
                     b.Property<DateTime?>("ResponseTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("status")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -307,6 +301,13 @@ namespace Persistence.CallCenter_Case.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "64d5c4ea-42d8-4972-a10e-ed879b3dadd7",
+                            RoleId = "ad55349b-e712-4838-801f-f9c7176dc9e0"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -337,21 +338,6 @@ namespace Persistence.CallCenter_Case.Migrations
                         .IsRequired();
 
                     b.Navigation("AppUser");
-                });
-
-            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Report", b =>
-                {
-                    b.HasOne("Domain.CallCenter_Case.Entities.CallRecord", "CallRecord")
-                        .WithOne("Report")
-                        .HasForeignKey("Domain.CallCenter_Case.Entities.Report", "CallRecordId");
-
-                    b.HasOne("Domain.CallCenter_Case.Entities.Request", "Request")
-                        .WithOne("Report")
-                        .HasForeignKey("Domain.CallCenter_Case.Entities.Report", "RequestId");
-
-                    b.Navigation("CallRecord");
-
-                    b.Navigation("Request");
                 });
 
             modelBuilder.Entity("Domain.CallCenter_Case.Entities.Request", b =>
@@ -416,21 +402,11 @@ namespace Persistence.CallCenter_Case.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Domain.CallCenter_Case.Entities.CallRecord", b =>
-                {
-                    b.Navigation("Report");
-                });
-
             modelBuilder.Entity("Domain.CallCenter_Case.Entities.Identity.AppUser", b =>
                 {
                     b.Navigation("CallRecords");
 
                     b.Navigation("Requests");
-                });
-
-            modelBuilder.Entity("Domain.CallCenter_Case.Entities.Request", b =>
-                {
-                    b.Navigation("Report");
                 });
 #pragma warning restore 612, 618
         }
