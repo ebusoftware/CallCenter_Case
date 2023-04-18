@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Application.CallCenter_Case.Features.Commands
 {
-    public class CreateResponseTimeCommand:IRequest<CreateResponseTimeDTO>
+    public class CreateRequestResponseTimeCommand:IRequest<CreateRequestResponseTimeDTO>
     {
         public int Id { get; set; }
 
-        public class CreateResponseTimeCommandHandler : IRequestHandler<CreateResponseTimeCommand, CreateResponseTimeDTO>
+        public class CreateResponseTimeCommandHandler : IRequestHandler<CreateRequestResponseTimeCommand, CreateRequestResponseTimeDTO>
         {
             private readonly IRequestWriteRepository _writeRepository;
             private readonly IRequestReadRepository _readRepository;
@@ -25,7 +25,7 @@ namespace Application.CallCenter_Case.Features.Commands
                 _readRepository = readRepository;
             }
 
-            public async Task<CreateResponseTimeDTO> Handle(CreateResponseTimeCommand request, CancellationToken cancellationToken)
+            public async Task<CreateRequestResponseTimeDTO> Handle(CreateRequestResponseTimeCommand request, CancellationToken cancellationToken)
             {
                 if (request!=null)
                 {
@@ -35,12 +35,12 @@ namespace Application.CallCenter_Case.Features.Commands
                         data.Status = false;
                         data.ResponseTime = DateTime.UtcNow;
                         await _writeRepository.UpdateAsync(data);
-                        return new CreateResponseTimeDTO() { Message = $"Talebe Dönüş Yapıldı."};
+                        return new CreateRequestResponseTimeDTO() { Message = $"Talebe Dönüş Yapıldı."};
                     }
                     else
-                        return new CreateResponseTimeDTO() { Message = $"Böyle Bir Talep Mevcut Değil" };
+                        return new CreateRequestResponseTimeDTO() { Message = $"Böyle Bir Talep Mevcut Değil" };
                 }
-                return new CreateResponseTimeDTO() { Message = $"Hatalı İşlem Yapıldı" };
+                return new CreateRequestResponseTimeDTO() { Message = $"Hatalı İşlem Yapıldı" };
             }
         }
     }

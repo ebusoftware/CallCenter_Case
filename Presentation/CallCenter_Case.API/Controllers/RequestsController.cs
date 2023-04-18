@@ -24,9 +24,9 @@ namespace CallCenter_Case.API.Controllers
             return Ok(requestDTO);
         }
         [HttpPut("{Id}")]
-        public async Task<IActionResult> CreateResponseTime([FromRoute] CreateResponseTimeCommand createResponseTimeCommand)
+        public async Task<IActionResult> CreateResponseTime([FromRoute] CreateRequestResponseTimeCommand createResponseTimeCommand)
         {
-            CreateResponseTimeDTO requestDTO = await Mediator.Send(createResponseTimeCommand);
+            CreateRequestResponseTimeDTO requestDTO = await Mediator.Send(createResponseTimeCommand);
             return Ok(requestDTO);
         }
 

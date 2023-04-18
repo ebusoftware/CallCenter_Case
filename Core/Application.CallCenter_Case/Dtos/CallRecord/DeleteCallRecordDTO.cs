@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.CallCenter_Case.Dtos.Request
+namespace Application.CallCenter_Case.Dtos.CallRecord
 {
-    public class CreateResponseTimeDTO
+    public class DeleteCallRecordDTO
     {
         public string Message { get; set; }
     }
