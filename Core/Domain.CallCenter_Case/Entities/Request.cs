@@ -13,7 +13,7 @@ namespace Domain.CallCenter_Case.Entities
         public string UserId { get; set; }
         public string RequestType { get; set; }//talep türü
         public DateTime? ResponseTime { get; set; }
-        public bool status { get; set; }
+        public bool Status { get; set; } = true;//ilk talep oluşunca aktif gözüksün
 
         public AppUser AppUser { get; set; }
         public Report? Report { get; set; }
