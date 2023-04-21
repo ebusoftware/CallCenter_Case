@@ -1,5 +1,7 @@
 ﻿using Application.CallCenter_Case.Abstractions.Token;
+using Domain.CallCenter_Case.Entities.Identity;
 using Infrastructure.CallCenter_Case.Services.Token;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace Infrastructure.CallCenter_Case
         {
 
             serviceCollection.AddScoped<ITokenHandler, TokenHandler>();
+            serviceCollection.AddScoped<UserManager<AppUser>>();
         }
 
 

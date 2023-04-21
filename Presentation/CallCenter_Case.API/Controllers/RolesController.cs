@@ -4,6 +4,7 @@ using Application.CallCenter_Case.Features.Commands.Role.DeleteRole;
 using Application.CallCenter_Case.Features.Commands.Role.UpdateRole;
 using Application.CallCenter_Case.Features.Queries.Role.GetAllRole;
 using Application.CallCenter_Case.Features.Queries.Role.GetByIdRole;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,6 +12,7 @@ namespace CallCenter_Case.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(AuthenticationSchemes ="Admin",Roles = "Admin,Yönetici")]
     public class RolesController : BaseController
     {
         //Coomands

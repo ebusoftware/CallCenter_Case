@@ -1,6 +1,7 @@
 ﻿using Application.CallCenter_Case.Abstractions.Token;
 using Application.CallCenter_Case.Dtos.Token;
 using Domain.CallCenter_Case.Entities.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -17,10 +18,12 @@ namespace Infrastructure.CallCenter_Case.Services.Token
     public class TokenHandler:ITokenHandler
     {
         private readonly IConfiguration _configuration;
+        private readonly UserManager<AppUser> _userManager;
 
-        public TokenHandler(IConfiguration configuration)
+        public TokenHandler(IConfiguration configuration, UserManager<AppUser> userManager)
         {
             _configuration = configuration;
+            _userManager = userManager;
         }
 
         public TokenDTO CreateAccessToken(int second, AppUser user)
@@ -38,9 +41,26 @@ namespace Infrastructure.CallCenter_Case.Services.Token
                 issuer: _configuration["Token:Issuer"],
                 expires: token.Expiration,
                 notBefore: DateTime.UtcNow,
+                
                 signingCredentials: signingCredentials,
-                claims: new List<Claim> { new(ClaimTypes.Name, user.UserName) }
+                claims: new List<Claim> 
+                {
+                    new(ClaimTypes.Name, user.UserName),
+                    new(ClaimTypes.NameIdentifier,user.Id)
+
+                }
+
                 );
+            // Kullanıcının rollerini alıyoruz.
+            var roles = _userManager.GetRolesAsync(user).Result;
+
+            // Rollerini JWT tokenına ekliyoruz.
+            foreach (var role in roles)
+            {
+                securityToken.Payload.AddClaim(new Claim(ClaimTypes.Role, role));
+            }
+
+
             //Token oluşturucu sınıfından bir örnek alalım.
             JwtSecurityTokenHandler tokenHandler = new();
             token.AccessToken = tokenHandler.WriteToken(securityToken);

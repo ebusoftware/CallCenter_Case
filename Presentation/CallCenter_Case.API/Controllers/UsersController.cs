@@ -25,6 +25,8 @@ namespace CallCenter_Case.API.Controllers
             return Ok(response);
         }
         [HttpDelete]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,Müşteri")]
+
         public async Task<IActionResult> DeleteUser(DeleteUserCommand deleteUserCommand)
         {
             DeleteUserDTO response = await Mediator.Send(deleteUserCommand);
@@ -32,6 +34,8 @@ namespace CallCenter_Case.API.Controllers
         }
 
         [HttpPost("assign-role-to-user")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin")]
+
         public async Task<IActionResult> AssignRoleToUser(AssignRoleToUserCommand assignRoleToUserCommand)
         {
             AssignRoleToUserDTO response = await Mediator.Send(assignRoleToUserCommand);
@@ -41,19 +45,25 @@ namespace CallCenter_Case.API.Controllers
         //Queries
 
         [HttpGet]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
+
         public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUserQuery getAllUserQuery)
         {
             GetAllUserDTO response = await Mediator.Send(getAllUserQuery);
             return Ok(response);
         }
         [HttpGet("{Id}")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
+
         public async Task<IActionResult> GetByUserId([FromRoute] GetByUserIdQuery getByUserIdQuery)
         {
             GetByUserIdDTO response = await Mediator.Send(getByUserIdQuery);
             return Ok(response);
         }
 
+
         [HttpGet("get-roles-to-user/{UserId}")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
         public async Task<IActionResult> GetRolesToUser([FromRoute] GetRolesToUserQuery getRolesToUserQuery)
         {
             GetRolesToUserQueryDTO response = await Mediator.Send(getRolesToUserQuery);
