@@ -22,7 +22,7 @@ namespace CallCenter_Case.API.Controllers
             return Ok(requestDTO);
         }
         [HttpDelete("{Id}")]
-        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,Müşteri")]
 
         public async Task<IActionResult> DeleteRequest([FromRoute] DeleteRequestCommand deleteRequestCommand)
         {

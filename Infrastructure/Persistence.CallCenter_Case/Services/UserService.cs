@@ -118,5 +118,31 @@ namespace Persistence.CallCenter_Case.Services
             return user;
             
         }
+
+        public async Task<(object, int)> FilterByRoleNameAsync(int page, int size, string roleName)
+        {
+            var role = await _roleManager.FindByNameAsync(roleName);
+            if (role == null)
+            {
+                throw new ApplicationException($"'{roleName}' isimli rol bulunamadı.");
+            }
+
+            var usersInRole = await _userManager.GetUsersInRoleAsync(role.Name);
+
+            var totalCount = usersInRole.Count;
+
+            var paginatedUsers = usersInRole.Skip((page - 1) * size).Take(size).Select(u =>
+            {
+                return new
+                {
+                    u.Id,
+                    u.UserName,
+                    u.Email,
+                    u.NameSurname
+                };
+            }).ToList();
+
+            return (paginatedUsers, totalCount);
+        }
     }
 }

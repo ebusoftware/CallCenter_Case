@@ -21,6 +21,8 @@ namespace Persistence.CallCenter_Case.Contexts
         public DbSet<CallRecord> CallRecords { get; set; }
         public DbSet<Request> Requests { get; set; }
 
+
+
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
           
@@ -58,6 +60,7 @@ namespace Persistence.CallCenter_Case.Contexts
             {
                 Id = adminId.ToString(),
                 NameSurname = "admin",
+                UserName = "admin",
                 NormalizedUserName = "ADMIN",
                 Email = "admin@example.com",
                 NormalizedEmail = "ADMIN@EXAMPLE.COM",
@@ -74,7 +77,8 @@ namespace Persistence.CallCenter_Case.Contexts
             {
                 Id = adminRoleId.ToString(),
                 Name = "Admin",
-                NormalizedName = "ADMIN"
+                NormalizedName = "ADMIN",
+                
             });
 
             // Assign Admin role to Admin user

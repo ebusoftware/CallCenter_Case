@@ -12,7 +12,7 @@ namespace CallCenter_Case.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(AuthenticationSchemes ="Admin",Roles = "Admin,Yönetici")]
+    [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
     public class RolesController : BaseController
     {
         //Coomands

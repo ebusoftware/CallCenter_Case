@@ -29,15 +29,21 @@ namespace Application.CallCenter_Case.Features.Commands
 
             public async Task<CreateCallRecordDTO> Handle(CreateCallRecordCommand request, CancellationToken cancellationToken)
             {
-                await _callRecordWriteRepository.AddAsync(new CallRecord()
+                if (request!=null)
                 {
-                    UserId=request.UserId,
-                    Notes=request.Notes,
-                    RequestType=request.RequestType,
-                    
+                    await _callRecordWriteRepository.AddAsync(new CallRecord()
+                    {
+                        UserId = request.UserId,
+                        Notes = request.Notes,
+                        RequestType = request.RequestType,
+
                 });
-                await _callRecordWriteRepository.SaveAsync();
-                return new CreateCallRecordDTO { Message = $"Görüşme Talebi Oluşturuldu ." };
+                    return new CreateCallRecordDTO { Message = $"Görüşme Talebi Oluşturuldu." };
+
+                }
+                return new CreateCallRecordDTO { Message = $"Talep oluşamadı! ." };
+
+                //await _callRecordWriteRepository.SaveAsync();
             }
         }
     }

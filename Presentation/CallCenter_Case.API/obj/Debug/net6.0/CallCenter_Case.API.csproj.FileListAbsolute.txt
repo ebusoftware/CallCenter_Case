@@ -22,7 +22,6 @@ C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\CallCenter_Case.API.AssemblyInfoInputs.cache
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\CallCenter_Case.API.AssemblyInfo.cs
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\CallCenter_Case.API.csproj.CoreCompileInputs.cache
-C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\CallCenter_Case.API.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\CallCenter_Case.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\staticwebassets\msbuild.CallCenter_Case.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\staticwebassets\msbuild.build.CallCenter_Case.API.props

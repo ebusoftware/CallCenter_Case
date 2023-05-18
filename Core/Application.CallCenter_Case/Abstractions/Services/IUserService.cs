@@ -14,9 +14,14 @@ namespace Application.CallCenter_Case.Abstractions.Services
         Task<CreateUserDTO> CreateAsync(CreateUserCommand model);
         Task UpdateRefreshToken(string refreshToken, AppUser user, DateTime accessTokenDate, int addOnAccessTokenDate);
         Task<List<ListUserDTO>> GetAllUsersAsync(int page, int size);
+
         int TotalUsersCount { get; }
         Task AssignRoleToUserAsnyc(string userId, string[] roles);
         Task<string[]> GetRolesToUserAsync(string userIdOrName);
         Task<AppUser> GetByUserIdAsync(string userId);
+
+        Task<(object, int)> FilterByRoleNameAsync(int page, int size, string roleName);
+
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Domain.CallCenter_Case.Entities;
+using Domain.CallCenter_Case.Entities.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace Application.CallCenter_Case.Repositories
 {
     public interface ICallRecordReadRepository:IReadRepository<CallRecord>
     {
+        Task<AppUser> GetRepresentativeById(string representativeId);
     }
 }

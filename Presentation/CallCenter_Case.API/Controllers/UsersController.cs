@@ -4,6 +4,7 @@ using Application.CallCenter_Case.Features.Commands.User.CreateUser;
 using Application.CallCenter_Case.Features.Commands.User.DeleteUser;
 using Application.CallCenter_Case.Features.Queries.User.GetAllUser;
 using Application.CallCenter_Case.Features.Queries.User.GetByUserId;
+using Application.CallCenter_Case.Features.Queries.User.GetRoleFilterByUserName;
 using Application.CallCenter_Case.Features.Queries.User.GetRolesToUser;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -67,6 +68,14 @@ namespace CallCenter_Case.API.Controllers
         public async Task<IActionResult> GetRolesToUser([FromRoute] GetRolesToUserQuery getRolesToUserQuery)
         {
             GetRolesToUserQueryDTO response = await Mediator.Send(getRolesToUserQuery);
+            return Ok(response);
+        }
+
+        [HttpGet("get-users-filter-role-name")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
+        public async Task<IActionResult> GetUsersFilterByRoleName([FromQuery] GetRoleFilterByUserNameQuery getRoleFilterByUserNameQuery)
+        {
+            GetRoleFilterByUserNameDTO response = await Mediator.Send(getRoleFilterByUserNameQuery);
             return Ok(response);
         }
 

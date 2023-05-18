@@ -65,6 +65,7 @@ namespace Persistence.CallCenter_Case.Services
             IdentityResult result = await _roleManager.UpdateAsync(role);
             return result.Succeeded;
         }
+        
     }
 
 }

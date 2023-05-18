@@ -1,7 +1,5 @@
 ﻿using Application.CallCenter_Case.Dtos.CallRecord;
-using Application.CallCenter_Case.Dtos.Request;
 using Application.CallCenter_Case.Repositories;
-using Domain.CallCenter_Case.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,36 +9,44 @@ using System.Threading.Tasks;
 
 namespace Application.CallCenter_Case.Features.Commands
 {
-    public class CreateCallRecordResponseTimeCommand:IRequest<CreateCallRecordResponseTimeDTO>
+    public class CreateReplyCommand:IRequest<CreateReplyDTO>
     {
         public int Id { get; set; }
-        public class CreateCallRecordResponseTimeCommandHandler : IRequestHandler<CreateCallRecordResponseTimeCommand, CreateCallRecordResponseTimeDTO>
+        public string RepresentativeId { get; set; }
+        public string? Reply { get; set; }
+
+        public class CreateReplyCommandHandler : IRequestHandler<CreateReplyCommand, CreateReplyDTO>
         {
             private readonly ICallRecordReadRepository _callRecordReadRepository;
             private readonly ICallRecordWriteRepository _callRecordWriteRepository;
 
-            public CreateCallRecordResponseTimeCommandHandler(ICallRecordReadRepository callRecordReadRepository, ICallRecordWriteRepository callRecordWriteRepository)
+            
+
+            public CreateReplyCommandHandler(ICallRecordReadRepository callRecordReadRepository, ICallRecordWriteRepository callRecordWriteRepository)
             {
                 _callRecordReadRepository = callRecordReadRepository;
                 _callRecordWriteRepository = callRecordWriteRepository;
             }
 
-            public async Task<CreateCallRecordResponseTimeDTO> Handle(CreateCallRecordResponseTimeCommand request, CancellationToken cancellationToken)
+            public async Task<CreateReplyDTO> Handle(CreateReplyCommand request, CancellationToken cancellationToken)
             {
                 if (request != null)
                 {
                     var data = await _callRecordReadRepository.GetByIdAsync(request.Id);
                     if (data != null)
                     {
+                        data.Reply = request.Reply;
+                        data.RepresentativeId = request.RepresentativeId;
                         data.ResponseTime = DateTime.UtcNow;
                         await _callRecordWriteRepository.UpdateAsync(data);
-                        return new CreateCallRecordResponseTimeDTO() { Message = $"Talebe Dönüş Yapıldı." };
+                        return new CreateReplyDTO() { Message = $"Talebe Cevap Verildi." };
                     }
                     else
-                        return new CreateCallRecordResponseTimeDTO() { Message = $"Böyle Bir Talep Mevcut Değil" };
+                        return new CreateReplyDTO() { Message = $"Böyle Bir Talep Mevcut Değil" };
                 }
-                return new CreateCallRecordResponseTimeDTO() { Message = $"Hatalı İşlem Yapıldı" };
+                return new CreateReplyDTO() { Message = $"Hatalı İşlem Yapıldı" };
             }
         }
+
     }
 }

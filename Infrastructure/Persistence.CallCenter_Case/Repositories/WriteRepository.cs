@@ -25,9 +25,17 @@ namespace Persistence.CallCenter_Case.Repositories
 
         public async Task<T> AddAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Added;
-            await _context.SaveChangesAsync();
-            return entity;
+            try
+            {
+                _context.Entry(entity).State = EntityState.Added;
+                await _context.SaveChangesAsync();
+                return entity;
+            }
+            catch (Exception ex)
+            {
+                // Hata mesajını ve ayrıntılarını loglayabilir veya başka bir şekilde ele alabilirsiniz.
+                throw ex; // veya isteğe bağlı olarak daha özel bir hata fırlatma işlemi yapabilirsiniz.
+            }
         }
 
         public async Task<bool> AddRangeAsync(List<T> datas)
