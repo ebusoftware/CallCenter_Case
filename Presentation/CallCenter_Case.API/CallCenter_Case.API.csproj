@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Core\Application.CallCenter_Case\Application.CallCenter_Case.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.CallCenter_Case\Infrastructure.CallCenter_Case.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Persistence.CallCenter_Case\Persistence.CallCenter_Case.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\SignalR.CallCenter_Case\SignalR.CallCenter_Case.csproj" />
   </ItemGroup>
 
 </Project>

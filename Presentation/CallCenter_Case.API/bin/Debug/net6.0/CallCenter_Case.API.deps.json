@@ -13,6 +13,7 @@
           "Microsoft.EntityFrameworkCore.Design": "6.0.14",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.14",
           "Persistence.CallCenter_Case": "1.0.0",
+          "SignalR.CallCenter_Case": "1.0.0",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
@@ -786,6 +787,7 @@
           "MediatR": "11.1.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore": "6.0.14",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0"
         },
@@ -822,6 +824,14 @@
         },
         "runtime": {
           "Persistence.CallCenter_Case.dll": {}
+        }
+      },
+      "SignalR.CallCenter_Case/1.0.0": {
+        "dependencies": {
+          "Application.CallCenter_Case": "1.0.0"
+        },
+        "runtime": {
+          "SignalR.CallCenter_Case.dll": {}
         }
       }
     }
@@ -1464,6 +1474,11 @@
       "sha512": ""
     },
     "Persistence.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SignalR.CallCenter_Case/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

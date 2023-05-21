@@ -1,4 +1,5 @@
-﻿using Application.CallCenter_Case.Dtos.CallRecord;
+﻿using Application.CallCenter_Case.Abstractions.Hubs;
+using Application.CallCenter_Case.Dtos.CallRecord;
 using Application.CallCenter_Case.Dtos.Request;
 using Application.CallCenter_Case.Repositories;
 using Domain.CallCenter_Case.Entities;
@@ -20,11 +21,13 @@ namespace Application.CallCenter_Case.Features.Commands
         {
             private readonly ICallRecordWriteRepository _callRecordWriteRepository;
             private readonly ICallRecordReadRepository _callRecordReadRepository;
+            private readonly ICallRecordHubService _callRecordHubService;
 
-            public CreateCallRecordCommandHandler(ICallRecordWriteRepository callRecordWriteRepository, ICallRecordReadRepository callRecordReadRepository)
+            public CreateCallRecordCommandHandler(ICallRecordWriteRepository callRecordWriteRepository, ICallRecordReadRepository callRecordReadRepository, ICallRecordHubService callRecordHubService)
             {
                 _callRecordWriteRepository = callRecordWriteRepository;
                 _callRecordReadRepository = callRecordReadRepository;
+                _callRecordHubService = callRecordHubService;
             }
 
             public async Task<CreateCallRecordDTO> Handle(CreateCallRecordCommand request, CancellationToken cancellationToken)
@@ -38,6 +41,9 @@ namespace Application.CallCenter_Case.Features.Commands
                         RequestType = request.RequestType,
 
                 });
+                await _callRecordHubService.CallRecordAddedMessageAsync($"'{request.RequestType}' Adında Yeni Talep!");
+
+                   
                     return new CreateCallRecordDTO { Message = $"Görüşme Talebi Oluşturuldu." };
 
                 }

@@ -1560,6 +1560,7 @@
           "MediatR": "11.1.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "11.0.0",
           "Microsoft.AspNetCore.Http": "2.2.2",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.EntityFrameworkCore": "6.0.14",
           "Microsoft.Extensions.Configuration.Binder": "6.0.0"
         },
@@ -1615,6 +1616,22 @@
         "runtime": {
           "bin/placeholder/Persistence.CallCenter_Case.dll": {}
         }
+      },
+      "SignalR.CallCenter_Case/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Application.CallCenter_Case": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SignalR.CallCenter_Case.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SignalR.CallCenter_Case.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -3687,6 +3704,11 @@
       "type": "project",
       "path": "../../Infrastructure/Persistence.CallCenter_Case/Persistence.CallCenter_Case.csproj",
       "msbuildProject": "../../Infrastructure/Persistence.CallCenter_Case/Persistence.CallCenter_Case.csproj"
+    },
+    "SignalR.CallCenter_Case/1.0.0": {
+      "type": "project",
+      "path": "../../Infrastructure/SignalR.CallCenter_Case/SignalR.CallCenter_Case.csproj",
+      "msbuildProject": "../../Infrastructure/SignalR.CallCenter_Case/SignalR.CallCenter_Case.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3696,6 +3718,7 @@
       "Microsoft.EntityFrameworkCore.Design >= 6.0.14",
       "Microsoft.EntityFrameworkCore.Tools >= 6.0.14",
       "Persistence.CallCenter_Case >= 1.0.0",
+      "SignalR.CallCenter_Case >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
   },
@@ -3743,6 +3766,9 @@
             },
             "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\Persistence.CallCenter_Case\\Persistence.CallCenter_Case.csproj": {
               "projectPath": "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\Persistence.CallCenter_Case\\Persistence.CallCenter_Case.csproj"
+            },
+            "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\SignalR.CallCenter_Case\\SignalR.CallCenter_Case.csproj": {
+              "projectPath": "C:\\Users\\e3b8u\\Desktop\\yazılım\\DotNet\\CallCenter_Case\\Infrastructure\\SignalR.CallCenter_Case\\SignalR.CallCenter_Case.csproj"
             }
           }
         }

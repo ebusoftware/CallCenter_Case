@@ -82,3 +82,6 @@ C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\bin\Debug\net6.0\MediatR.Contracts.dll
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\bin\Debug\net6.0\SignalR.CallCenter_Case.dll
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\bin\Debug\net6.0\SignalR.CallCenter_Case.pdb
+C:\Users\e3b8u\Desktop\yazılım\DotNet\CallCenter_Case\Presentation\CallCenter_Case.API\obj\Debug\net6.0\CallCenter_Case.API.MvcApplicationPartsAssemblyInfo.cs

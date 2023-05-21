@@ -60,20 +60,65 @@ namespace Persistence.CallCenter_Case.Services
         }
         public async Task<List<ListUserDTO>> GetAllUsersAsync(int page, int size)
         {
-            var users = await _userManager.Users
-                  .Skip(page * size)
-                  .Take(size)
-                  .ToListAsync();
+            List<AppUser> users;
+            //Admin olmayan kullanıcılar page ve size bilgisi "0" dan küçük değer girilerek elde edilir. "0" ve daha büyük sayılar için tüm kullanıcılar listelenir.
 
-            return users.Select(user => new ListUserDTO
+            if (page >= 0 && size > 0)
             {
-                Id = user.Id,
-                Email = user.Email,
-                NameSurname = user.NameSurname,
-                TwoFactorEnabled = user.TwoFactorEnabled,
-                UserName = user.UserName
+                users = await _userManager.Users
+                    .Skip(page * size)
+                    .Take(size)
+                    .ToListAsync();
+            }
+            else
+            {
+                users = await _userManager.Users
+                    .ToListAsync();
+            }
 
-            }).ToList();
+            var listUserDTOs = new List<ListUserDTO>();
+
+            foreach (var user in users)
+            {
+                var isInRole = await _userManager.IsInRoleAsync(user, "Admin");
+                if (page >= 0 && size >= 0)
+                {
+                    if (!isInRole)
+                    {
+                        var listUserDTO = new ListUserDTO
+                        {
+                            Id = user.Id,
+                            Email = user.Email,
+                            NameSurname = user.NameSurname,
+                            TwoFactorEnabled = user.TwoFactorEnabled,
+                            UserName = user.UserName
+                        };
+
+                        listUserDTOs.Add(listUserDTO);
+                    }
+                }
+                else
+                {
+                    var listUserDTO = new ListUserDTO
+                    {
+                        Id = user.Id,
+                        Email = user.Email,
+                        NameSurname = user.NameSurname,
+                        TwoFactorEnabled = user.TwoFactorEnabled,
+                        UserName = user.UserName
+                    };
+
+                    if (isInRole)
+                    {
+                        var roles = await _userManager.GetRolesAsync(user);
+                        listUserDTO.Roles = roles.ToList();
+                    }
+
+                    listUserDTOs.Add(listUserDTO);
+                }
+            }
+
+            return listUserDTOs;
         }
 
         public int TotalUsersCount => _userManager.Users.Count();

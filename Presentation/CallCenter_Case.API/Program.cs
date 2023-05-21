@@ -1,8 +1,12 @@
 using Application.CallCenter_Case;
 using Infrastructure.CallCenter_Case;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.IdentityModel.Tokens;
 using Persistence.CallCenter_Case;
+using SignalR.CallCenter_Case;
+using SignalR.CallCenter_Case.Hubs;
+
 using System.Security.Claims;
 using System.Text;
 
@@ -11,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceService();
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices();
+builder.Services.AddSignalRServices();
 
 // Add services to the container.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -58,5 +63,5 @@ app.UseCors();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHubs();
 app.Run();
