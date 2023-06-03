@@ -14,7 +14,7 @@ namespace CallCenter_Case.API.Controllers
     {
         //Commands
         [HttpPost]
-        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,Müşteri")]
+        [Authorize(AuthenticationSchemes = "Admin")]
 
         public async Task<IActionResult> CreateRequest([FromBody] CreateRequestCommand createRequestCommand)
         {
@@ -22,7 +22,7 @@ namespace CallCenter_Case.API.Controllers
             return Ok(requestDTO);
         }
         [HttpDelete("{Id}")]
-        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,Müşteri")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci")]
 
         public async Task<IActionResult> DeleteRequest([FromRoute] DeleteRequestCommand deleteRequestCommand)
         {

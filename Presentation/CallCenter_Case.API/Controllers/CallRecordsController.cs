@@ -16,7 +16,7 @@ namespace CallCenter_Case.API.Controllers
     public class CallRecordsController : BaseController
     {
         [HttpPost]
-        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,Müşteri")]
+        [Authorize(AuthenticationSchemes = "Admin")]
 
         public async Task<IActionResult> CreateCallRecord([FromBody] CreateCallRecordCommand createCallRecordCommand)
         {
@@ -25,7 +25,7 @@ namespace CallCenter_Case.API.Controllers
         }
 
         [HttpDelete("{Id}")]
-        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,Müşteri")]
+        [Authorize(AuthenticationSchemes = "Admin", Roles = "Admin,Temsilci,")]
 
         public async Task<IActionResult> DeleteCallRecord([FromRoute] DeleteCallRecordCommand deleteCallRecordCommand)
         {
